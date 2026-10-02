@@ -10,7 +10,7 @@ WORKDIR /usr/src/void_core
 RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
 
 COPY package.json ./
-COPY git_locksmith.rb initialization_matrix.rb codex_absorber.rb ./
+COPY lib/git_locksmith.rb lib/initialization_matrix.rb lib/codex_absorber.rb ./
 RUN ruby -e "puts 'Backend baseline modules staged.'"
 
 # --- Stage 2: TypeScript Runtime Environment ---
@@ -20,7 +20,7 @@ WORKDIR /app
 # Pull verified artifacts from the core builder environment
 COPY --from=backend-builder /usr/src/void_core /app
 
-COPY ethical_guardrails.ts runtime_pipeline.ts network_alert.ts intent_manifest.yaml ./
+COPY ethical_guardrails.ts runtime_pipeline.ts network_alert.ts config/intent_manifest.yaml ./
 RUN npm install -g typescript && tsc *.ts
 
 # Force execution parameters to anchor onto the 1/13 baseline constant configuration

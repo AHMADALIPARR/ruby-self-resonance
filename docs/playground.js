@@ -201,8 +201,8 @@ async function boot() {
     const { vm: newVm } = await DefaultRubyVM(module);
     vm = newVm;
 
-    setStatus("Evaluating ruby_self_resonance.rb (verbatim)…");
-    const src = await (await fetch("ruby_self_resonance.rb")).text();
+    setStatus("Evaluating lib/ruby_self_resonance.rb (verbatim)…");
+    const src = await (await fetch("lib/ruby_self_resonance.rb")).text();
     vm.eval(`require "time";\n` + src + `\n$playground = RubySelfResonance::PermissionRuntime.new([1.0, 0.8, 0.6, 0.9])\n`);
 
     $("boot").style.display = "none";

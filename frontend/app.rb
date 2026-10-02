@@ -13,7 +13,7 @@
 
 require "time"
 require "sinatra/base"
-require_relative "../ruby_self_resonance"
+require_relative "../lib/ruby_self_resonance"
 
 class ResonanceDashboard < Sinatra::Base
   set :views, File.expand_path("views", __dir__)

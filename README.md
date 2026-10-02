@@ -66,19 +66,19 @@ Every file at the repo root is the author's code **exactly as supplied** — not
 
 | File | What it is |
 |---|---|
-| `ruby_self_resonance.rb` | The complete stack: `MathKernel`, `ActionVector`, `Decision`, `FieldDiary`, `IntentSimCore`, `MezquiaResonanceEngine`, `CoherencePolicy`, `PermissionRuntime` — plus the author's example run |
-| `field_diary.rb` | `FieldDiary` (emotional-state creases: stable → seeking → crystallizing → dissonant → sovereign), `HRRCalculator` (HRR = (ΔEntropy/ΔTime) × 1/13), `IntegratedIntentSimEngine` |
-| `initialization_matrix.rb` | `ProgressiveInitializationMatrix` — the 44-stage boot sequence (field priming → intent alignment → coherence → sovereignty) |
-| `codex_absorber.rb` | `CodexAbsorber` — YAML intent-manifest ingestion → TypeScript/Python codegen |
-| `git_locksmith.rb` | `GitImmutabilityLocksmith` — SHA-256 file scan + sovereign-anchor check |
-| `resonance_repl.rb` | Interactive REPL (`init`, `fold`, `fold!`, `action`, `status`, `diary`, `threshold`, `reset`) |
-| `ethical_guardrails.asm` | x86-64 NASM ethical alignment monitor, fixed-point; demo runs EVT-001/002/003 |
-| `network_containment.asm` | x86-64 NASM containment module: WARNING → CONTAINMENT → TRUTHLOCK (exit 13) |
-| `intent_manifest.yaml` | `void_nexus_override_01` sovereign alignment manifest |
+| `lib/ruby_self_resonance.rb` | The complete stack: `MathKernel`, `ActionVector`, `Decision`, `FieldDiary`, `IntentSimCore`, `MezquiaResonanceEngine`, `CoherencePolicy`, `PermissionRuntime` — plus the author's example run |
+| `lib/field_diary.rb` | `FieldDiary` (emotional-state creases: stable → seeking → crystallizing → dissonant → sovereign), `HRRCalculator` (HRR = (ΔEntropy/ΔTime) × 1/13), `IntegratedIntentSimEngine` |
+| `lib/initialization_matrix.rb` | `ProgressiveInitializationMatrix` — the 44-stage boot sequence (field priming → intent alignment → coherence → sovereignty) |
+| `lib/codex_absorber.rb` | `CodexAbsorber` — YAML intent-manifest ingestion → TypeScript/Python codegen |
+| `lib/git_locksmith.rb` | `GitImmutabilityLocksmith` — SHA-256 file scan + sovereign-anchor check |
+| `bin/resonance_repl.rb` | Interactive REPL (`init`, `fold`, `fold!`, `action`, `status`, `diary`, `threshold`, `reset`) |
+| `asm/ethical_guardrails.asm` | x86-64 NASM ethical alignment monitor, fixed-point; demo runs EVT-001/002/003 |
+| `asm/network_containment.asm` | x86-64 NASM containment module: WARNING → CONTAINMENT → TRUTHLOCK (exit 13) |
+| `config/intent_manifest.yaml` | `void_nexus_override_01` sovereign alignment manifest |
 | `Dockerfile`, `docker-compose.yml` | Multi-stage Ruby/Node build + isolated-network compose service |
-| `ARCHITECTURE.txt` | The module tree, as supplied |
+| `docs/architecture.txt` | The module tree, as supplied |
 | `frontend/` | **New:** Sinatra 4 dashboard (server-side) |
-| `docs/` | **New:** GitHub Pages WASM playground (client-side, zero server) |
+| `docs/` | **New:** GitHub Pages WASM playground (client-side, zero server); `docs/lib/` holds the byte-identical copy of the stack the playground evaluates |
 
 ## The resonance frequency
 
@@ -113,7 +113,7 @@ rackup -p 4567                    # → http://localhost:4567
 `docs/` is a static site (the Pages source) where the **actual `ruby_self_resonance.rb`** — the verbatim file, copied byte-for-byte — executes inside the visitor's browser:
 
 1. `playground.js` streams `ruby+stdlib.wasm` (Ruby 3.2, ≈32 MB) from jsDelivr and boots it with the official `@ruby/wasm-wasi` browser runtime.
-2. It fetches `docs/ruby_self_resonance.rb` and `vm.eval`s it verbatim — including the author's example run, which executes live on load.
+2. It fetches `docs/lib/ruby_self_resonance.rb` and `vm.eval`s it verbatim — including the author's example run, which executes live on load.
 3. A `$playground` runtime is created; every button (authorize, fold, diary, reset) round-trips through real Ruby via JSON strings. No Ruby was rewritten for the browser — the same classes, the same constants, the same Σ.
 
 Because it is fully static, it deploys to GitHub Pages with nothing to operate: enable Pages with source `docs/` on `main` and the playground is live.
@@ -147,7 +147,7 @@ Because it is fully static, it deploys to GitHub Pages with nothing to operate: 
 - `IntegratedIntentSimEngine#process_agent_tick` references `RESONANCE_CONSTANT`, which is defined on `HRRCalculator`, not on the engine — calling it raises `NameError`. Preserved verbatim, as supplied.
 - `GitImmutabilityLocksmith#fetch_latest_commit_hash` returns a hardcoded hash (its own comments say it is mocking the git layer); the SHA-256 file scan itself is real.
 - The `Dockerfile` references `package.json`, `ethical_guardrails.ts`, `runtime_pipeline.ts`, and `network_alert.ts`, which were not part of the supplied material — preserved as written.
-- `docs/ruby_self_resonance.rb` is a byte-identical copy of the root file, kept so the static Pages site can fetch it. The root file is canonical.
+- `docs/lib/ruby_self_resonance.rb` is a byte-identical copy of the `lib/` file, kept so the static Pages site can fetch it. The `lib/` file is canonical.
 - The WASM playground streams its Ruby binary from jsDelivr at page load (≈32 MB first visit, then cached). The Sinatra dashboard needs no such download.
 
 ## License
