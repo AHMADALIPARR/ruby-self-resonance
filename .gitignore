@@ -1,0 +1,5 @@
+*.o
+*.out
+resonance_bin/
+.DS_Store
+frontend/tmp/

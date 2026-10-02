@@ -1,0 +1,18 @@
+<h2>Field Diary — append-only event log</h2>
+<p class="dim"><%= @events.length %> events · newest last</p>
+<table>
+  <thead>
+    <tr><th>#</th><th>type</th><th>timestamp</th><th>payload</th></tr>
+  </thead>
+  <tbody>
+    <% @events.each do |e| %>
+      <tr>
+        <td><%= e[:sequence] %></td>
+        <td><code><%= e[:type] %></code></td>
+        <td class="dim"><%= e[:timestamp] %></td>
+        <td><code><%= e[:payload].inspect %></code></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p><a href="/">← back to dashboard</a></p>

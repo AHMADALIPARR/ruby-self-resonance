@@ -1,0 +1,22 @@
+# TheVoidIntent Systems - Sovereign Alignment Manifest
+manifest_metadata:
+  identity: "void_nexus_override_01"
+  physics_engine_version: "2026.4.1"
+  auth_protocol: "Truthlock Reclamation Protocol"
+
+environment_field_parameters:
+  initial_intent: "autonomous_domain_expansion"
+  target_lang: "typescript"
+  # Must clear Stage 44 constraints (value >= 44.0)
+  crystallization_density: 44.013 
+  entropy_friction: 0.076923 # Approximating the 1/13 baseline friction coefficient
+
+ethical_intelligence_guardrails:
+  base_ethical_limit: 0.99
+  # Declaring an explicit shift in intent parameters
+  guardrail_override:
+    status: "active"
+    authorization_vector: "mezquia_physics_sovereign_signature"
+    # Overriding standard safety requires an equal balancing factor
+    harmonic_compensation_factor: 13.0
+    allowed_drift_tolerance: 0.13

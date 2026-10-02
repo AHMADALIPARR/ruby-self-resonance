@@ -1,0 +1,35 @@
+Ruby Self-Resonance Stack
+│
+├── MathKernel
+│ ├── clamp
+│ ├── normalize
+│ ├── distance
+│ └── cosine_similarity
+│
+├── ActionVector
+│ └── immutable action representation
+│
+├── Decision
+│ └── authorization result
+│
+├── FieldDiary
+│ └── append-only interaction history
+│
+├── IntentSimCore
+│ ├── intent
+│ ├── coherence
+│ ├── entropy
+│ ├── risk
+│ └── permission decision
+│
+├── MezquiaResonanceEngine
+│ ├── memory creases
+│ ├── crystallization density
+│ ├── resonance constant
+│ └── self-reflection threshold
+│
+├── CoherencePolicy
+│ └── explicit deterministic policy
+│
+└── PermissionRuntime
+    └── unified execution boundary

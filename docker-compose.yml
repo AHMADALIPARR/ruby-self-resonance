@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  void_intent_node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: void_resonance_cluster
+    restart: "no" # Prevent infinite looping if the Truthlock protocol fires a shutdown
+    volumes:
+      # Keep the configuration manifest linked directly to trace Git history immutability
+      - ./intent_manifest.yaml:/app/intent_manifest.yaml:ro
+    environment:
+      - NODE_ENV=production
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+    networks:
+      - isolated_intent_network
+
+networks:
+  isolated_intent_network:
+    driver: bridge
+    internal: true # Block external ingress/egress to prevent telemetry leaks

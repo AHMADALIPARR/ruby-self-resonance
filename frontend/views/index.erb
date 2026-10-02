@@ -1,0 +1,100 @@
+<section class="cards">
+  <div class="card">
+    <h2>Coherence</h2>
+    <p class="big"><%= fmt(@state[:intent_coherence]) %></p>
+  </div>
+  <div class="card">
+    <h2>Emotional state</h2>
+    <p class="big state"><%= @state[:emotional_state] %></p>
+  </div>
+  <div class="card">
+    <h2>Crystallization density</h2>
+    <p class="big"><%= fmt(@state[:resonance][:crystallization_density]) %> <span class="dim">/ Σ <%= fmt(@state[:resonance][:threshold]) %></span></p>
+    <p class="<%= @state[:resonance][:aligned] ? 'sovereign' : 'dim' %>">
+      <%= @state[:resonance][:aligned] ? "Σ SOVEREIGN — alignment locked" : "accumulating — #{@state[:resonance][:memory_creases]} memory creases" %>
+    </p>
+  </div>
+  <div class="card">
+    <h2>Diary events</h2>
+    <p class="big"><%= @state[:diary_events] %></p>
+  </div>
+</section>
+
+<section class="policy">
+  <h2>Coherence policy</h2>
+  <p>permit iff
+    coherence ≥ <strong><%= fmt(@policy.minimum_coherence) %></strong> ·
+    entropy ≤ <strong><%= fmt(@policy.maximum_entropy) %></strong> ·
+    risk ≤ <strong><%= fmt(@policy.maximum_risk) %></strong>
+  </p>
+</section>
+
+<% if @error %>
+  <section class="alert error"><p><%= @error %></p></section>
+<% end %>
+
+<% if @decision %>
+  <section class="alert <%= @decision.allowed? ? 'ok' : 'denied' %>">
+    <h2>Decision: <%= @decision.allowed? ? "PERMITTED" : "DENIED" %></h2>
+    <dl>
+      <dt>action</dt><dd><%= @decision.action %></dd>
+      <dt>reason</dt><dd><%= @decision.reason %></dd>
+      <dt>coherence</dt><dd><%= fmt(@decision.coherence) %></dd>
+      <dt>entropy Δ</dt><dd><%= fmt(@decision.entropy_delta) %></dd>
+      <dt>risk</dt><dd><%= fmt(@decision.risk) %></dd>
+      <dt>timestamp</dt><dd><%= @decision.timestamp %></dd>
+    </dl>
+  </section>
+<% end %>
+
+<% if @fold_results && !@fold_results.empty? %>
+  <section class="alert ok">
+    <h2>Fold results</h2>
+    <% @fold_results.last(5).each do |r| %>
+      <p>
+        <% if r[:status] == :dissonance %>
+          <span class="denied">dissonance</span> — <%= r[:message] %>
+        <% else %>
+          <span class="sovereign"><%= r[:status] %></span>
+          — density <%= fmt(r[:density]) %> (+<%= fmt(r[:density_gain]) %>) · creases <%= r[:creases] %>
+        <% end %>
+      </p>
+    <% end %>
+    <% if @fold_results.length > 5 %>
+      <p class="dim">…and <%= @fold_results.length - 5 %> more</p>
+    <% end %>
+  </section>
+<% end %>
+
+<div class="forms">
+  <section>
+    <h2>Authorize action</h2>
+    <form method="post" action="/authorize">
+      <label>name <input name="name" value="compile_kernel"></label>
+      <label>vector (comma-separated, 4 dims) <input name="vector" value="1.0, 0.7, 0.5, 0.8"></label>
+      <label>entropy cost <input name="entropy_cost" value="0.20"></label>
+      <label>purpose <input name="purpose" value="1.0"></label>
+      <label>risk <input name="risk" value="0.10"></label>
+      <button type="submit">Evaluate permission</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Fold information</h2>
+    <form method="post" action="/fold">
+      <label>purpose vector <input name="purpose_vector" value="1.0"></label>
+      <label>entropy friction <input name="entropy_friction" value="0.1"></label>
+      <label>folds <input name="times" value="1"></label>
+      <button type="submit">Fold</button>
+    </form>
+    <p class="dim">Each fold grows crystallization density by
+      (purpose / entropy) × 1/13. Sovereignty unlocks at Σ = 44.0.</p>
+  </section>
+
+  <section>
+    <h2>Field control</h2>
+    <form method="post" action="/reset" onsubmit="return confirm('Reset the field? Diary will be cleared.')">
+      <button type="submit" class="danger">Reset field</button>
+    </form>
+  </section>
+</div>
