@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- SPDX-License-Identifier: LicenseRef-NON-AI-MPL-2.0 -->
+<!-- Copyright (C) 2026 SnapKitty Collective -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self Resonance Stack · WASM Playground</title>
+<link rel="stylesheet" href="playground.css">
+</head>
+<body>
+<header>
+  <h1>◈ Self Resonance Stack</h1>
+  <p class="sub">WASM Playground — the verbatim <code>ruby_self_resonance.rb</code> running live in your browser via Ruby 3.2 → WebAssembly. No server.</p>
+</header>
+
+<main>
+  <section id="boot" class="panel">
+    <h2>Booting Ruby…</h2>
+    <p id="boot-status">Waiting to start.</p>
+    <p class="dim">Streams <code>ruby+stdlib.wasm</code> (≈32 MB, Ruby 3.2) from jsDelivr, then evaluates the repository's own <code>ruby_self_resonance.rb</code> byte-for-byte.</p>
+  </section>
+
+  <div id="playground" style="display:none">
+    <section class="cards">
+      <div class="card"><h2>Coherence</h2><p class="big" id="st-coherence">–</p></div>
+      <div class="card"><h2>Emotional state</h2><p class="big state" id="st-emotion">–</p></div>
+      <div class="card"><h2>Crystallization density</h2>
+        <p class="big"><span id="st-density">–</span> <span class="dim">/ Σ <span id="st-threshold">–</span></span></p>
+        <p id="st-aligned" class="dim">–</p>
+      </div>
+      <div class="card"><h2>Resonance frequency</h2>
+        <p class="big">1/13 <span class="dim">≈ 0.076923</span></p>
+        <p class="dim">orbital baseline constant</p>
+      </div>
+      <div class="card"><h2>Diary events</h2><p class="big" id="st-diary">–</p></div>
+    </section>
+
+    <section class="panel">
+      <h2>Coherence policy</h2>
+      <p>permit iff coherence ≥ <strong>50.0</strong> · entropy ≤ <strong>1.0</strong> · risk ≤ <strong>0.5</strong></p>
+    </section>
+
+    <section id="decision-box" class="panel" style="display:none"></section>
+    <section id="fold-box" class="panel" style="display:none"></section>
+
+    <div class="forms">
+      <section class="panel">
+        <h2>Authorize action</h2>
+        <label>name <input id="a-name" value="compile_kernel"></label>
+        <label>vector (comma-separated, 4 dims) <input id="a-vector" value="1.0, 0.7, 0.5, 0.8"></label>
+        <label>entropy cost <input id="a-entropy" value="0.20"></label>
+        <label>purpose <input id="a-purpose" value="1.0"></label>
+        <label>risk <input id="a-risk" value="0.10"></label>
+        <button id="btn-authorize">Evaluate permission</button>
+      </section>
+
+      <section class="panel">
+        <h2>Fold information</h2>
+        <label>purpose vector <input id="f-purpose" value="1.0"></label>
+        <label>entropy friction <input id="f-entropy" value="0.1"></label>
+        <label>folds (1–60) <input id="f-times" value="1"></label>
+        <button id="btn-fold">Fold</button>
+        <p class="dim">Each fold grows density by (purpose / entropy) × 1/13. Sovereignty unlocks at Σ = 44.0.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Field control</h2>
+        <button id="btn-reset" class="danger">Reset field</button>
+      </section>
+    </div>
+
+    <section class="panel">
+      <h2>Field Diary — append-only event log</h2>
+      <p class="dim"><span id="diary-count">0</span> events · newest last</p>
+      <table>
+        <thead><tr><th>#</th><th>type</th><th>timestamp</th><th>payload</th></tr></thead>
+        <tbody id="diary-body"></tbody>
+      </table>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <p>Ruby Self-Resonance Stack · <code>RubySelfResonance::PermissionRuntime</code> · Ruby 3.2 compiled to WebAssembly (<a href="https://github.com/ruby/ruby.wasm">ruby.wasm</a>)</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@2.3.0/dist/browser.script.iife.js"></script>
+<script src="playground.js"></script>
+</body>
+</html>

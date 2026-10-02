@@ -15,6 +15,11 @@
     </p>
   </div>
   <div class="card">
+    <h2>Resonance frequency</h2>
+    <p class="big">1/13 <span class="dim">≈ <%= format("%.6f", ResonanceDashboard::RESONANCE_FREQUENCY) %></span></p>
+    <p class="dim">orbital baseline constant</p>
+  </div>
+  <div class="card">
     <h2>Diary events</h2>
     <p class="big"><%= @state[:diary_events] %></p>
   </div>

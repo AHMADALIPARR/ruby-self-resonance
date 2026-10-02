@@ -20,6 +20,8 @@ class ResonanceDashboard < Sinatra::Base
   set :public_folder, File.expand_path("public", __dir__)
 
   DEFAULT_INTENT = [1.0, 0.8, 0.6, 0.9].freeze
+  # The orbital baseline constant, displayed as a frequency.
+  RESONANCE_FREQUENCY = RubySelfResonance::MezquiaResonanceEngine::RESONANCE_CONSTANT
 
   configure do
     set :runtime, RubySelfResonance::PermissionRuntime.new(DEFAULT_INTENT)
